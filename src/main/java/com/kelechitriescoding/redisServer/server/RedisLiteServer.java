@@ -33,16 +33,15 @@ public class RedisLiteServer {
              OutputStream out = socket.getOutputStream()) {
 
             String line = in.readLine();
-            if (line != null && line.startsWith("*1")) {
-                String bulkLength = in.readLine(); // should be $4
-                String command = in.readLine();    // should be PING
-                if ("$4".equals(bulkLength) && "PING".equalsIgnoreCase(command)) {
-                    out.write("+PONG\r\n".getBytes());
+            if (line != null) {
+                Object command = RESPParser.deserialize(line + "\r\n" + in.readLine() + "\r\n" + in.readLine() + "\r\n");
+                if (command instanceof String[] && ((String[]) command).length == 1 && "PING".equalsIgnoreCase(((String[]) command)[0])) {
+                    out.write(RESPParser.serialize("PONG").getBytes());
                     out.flush();
                 }
             }
         } catch (Exception e) {
-            log.error("Exception occurred while handling client: ",e);
+            log.error("Exception occurred while handling client: ", e);
         }
     }
 
