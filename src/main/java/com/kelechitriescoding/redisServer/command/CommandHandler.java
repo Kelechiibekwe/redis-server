@@ -5,11 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 public class CommandHandler {
 
-    private static final Map<String, String> keyValueStore = new HashMap<>();
+    private static final Map<String, String> keyValueStore = new ConcurrentHashMap<>();
 
     public static boolean isPingCommand(Object command) {
         return command instanceof Object[] && ((Object[]) command).length == 1 && "PING".equalsIgnoreCase((String) ((Object[]) command)[0]);
