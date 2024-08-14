@@ -1,8 +1,9 @@
-package com.kelechitriescoding.redisServer.server;
+package com.kelechitriescoding.redisServer.parsing;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.Arrays;
 
 public class RESPParser {
 
@@ -13,11 +14,11 @@ public class RESPParser {
             return "+" + obj + "\r\n";
         } else if (obj instanceof Integer) {
             return ":" + obj + "\r\n";
-        } else if (obj instanceof String[]) {
-            String[] array = (String[]) obj;
+        } else if (obj instanceof Object[]) {
+            String[] stringArray = Arrays.stream((Object[])obj).map(Object::toString).toArray(String[]::new);
             StringBuilder sb = new StringBuilder();
-            sb.append("*").append(array.length).append("\r\n");
-            for (String element : array) {
+            sb.append("*").append(stringArray.length).append("\r\n");
+            for (String element : stringArray) {
                 sb.append("$").append(element.length()).append("\r\n").append(element).append("\r\n");
             }
             return sb.toString();

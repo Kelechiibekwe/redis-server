@@ -1,8 +1,6 @@
-package com.kelechitriescoding.redisServer.server;
+package com.kelechitriescoding.redisServer.parsing;
 
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,16 +26,11 @@ public class RESPParserTest {
 
     @Test
     public void testSerializeArray() throws Exception {
+        Object[] input = new Object[]{"foo", "bar"};
         String expected = "*2\r\n$3\r\nfoo\r\n$3\r\nbar\r\n";
-        Object[] deserialized = (Object[]) RESPParser.deserialize(expected);
+        String serialized = RESPParser.serialize(input);
 
-        // Convert Object[] to String[] safely
-        String[] result = new String[deserialized.length];
-        for (int i = 0; i < deserialized.length; i++) {
-            result[i] = (String) deserialized[i];
-        }
-
-        assertArrayEquals(new String[]{"foo", "bar"}, result);
+        assertEquals(expected, serialized);
     }
 
     @Test
@@ -64,4 +57,5 @@ public class RESPParserTest {
         Object[] expected = new Object[]{"foo", "bar"};
         assertArrayEquals(expected, (Object[]) RESPParser.deserialize(message));
     }
+
 }
