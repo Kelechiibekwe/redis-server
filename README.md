@@ -35,4 +35,3 @@ A lightweight Redis-like server implemented in Java using Spring Boot, demonstra
 - **TDD:**
   - Ensuring functionality through comprehensive testing using JUnit and other testing frameworks.
 
-## Getting Started
