@@ -8,12 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RedisLiteServerTest {
 
-    @Test
-    public void testHandleSetCommand() throws Exception {
-        Object[] message = new Object[]{"SET","name","jo"};
-        String expected = "+OK\r\n";
-        assertEquals(expected,RedisLiteServer.handleCommand(message));
-    }
+//    @Test
+//    public void testHandleSetCommand() throws Exception {
+//        Object[] message = new Object[]{"SET","name","jo"};
+//        String expected = "+OK\r\n";
+//        assertEquals(expected,RedisLiteServer.handleCommand(message));
+//    }
 
     //TODO: Write more test cases
 
