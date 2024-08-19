@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 @Slf4j
 public class CommandHandler {
@@ -36,7 +37,7 @@ public class CommandHandler {
 
             Command cmd = commandMap.get(commandName);
             if (cmd != null) {
-                log.info("Processing {} command", commandName);
+                log.debug("Processing {} command", commandName);
                 return cmd.execute(command);
             } else {
                 log.warn("Unknown command: {}", commandName);
@@ -55,4 +56,5 @@ public class CommandHandler {
         }
         return ((String) commandArray[0]).toUpperCase();
     }
+
 }
