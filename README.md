@@ -1,6 +1,6 @@
-# Redis Lite Server
+  # Redis Lite Server
 
-A lightweight Redis-like server implemented in Java using Spring Boot, built with a lot of enthusiasm and curiosity. This project was not only a fun challenge but also a great learning experience that deepened my understanding of Redis by diving into its documentation and concepts.
+A lightweight Redis-like server implemented in Java using Spring Boot, demonstrating skills in network programming, RESP protocol handling, and Test-Driven Development (TDD).
 
 ## Features
 
